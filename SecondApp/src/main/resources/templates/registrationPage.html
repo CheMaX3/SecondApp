@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация нового пользователя</title>
+  <style>
+           .error {
+           color: red;
+           }
+    </style>
+</head>
+<body>
+<form th:action="@{/registration}" th:object="${user}" th:method="POST">
+  <div>
+    <label for="username">Логин пользователя</label> <input type="text" th:field="*{username}"
+                                                          id="username" placeholder="Логин пользователя">
+    <ul>
+      <li th:each="err : ${#fields.errors('username')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="firstName">Имя</label> <input type="firstName" th:field="*{firstName}"
+                                                id="firstName" placeholder="Имя">
+    <ul>
+      <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="lastName">Фамилия</label> <input type="lastName" th:field="*{lastName}"
+                                              id="lastName" placeholder="Фамилия">
+    <ul>
+      <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="middleName">Отчество</label> <input type="middleName" th:field="*{middleName}"
+                                              id="middleName" placeholder="Отчество">
+    <ul>
+      <li th:each="err : ${#fields.errors('middleName')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="email">Электронная почта</label> <input type="email" th:field="*{email}"
+                                              id="email" placeholder="Электронная почта">
+    <ul>
+      <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="phoneNumber">Номер телефона +7 </label> <input type="phoneNumber" th:field="*{phoneNumber}"
+                                              id="phoneNumber" placeholder="Номер телефона">
+    <ul>
+      <li th:each="err : ${#fields.errors('phoneNumber')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="password">Пароль</label> <input type="password" th:field="*{password}"
+                                                id="password" placeholder="Пароль">
+    <ul>
+      <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
+    </ul>
+  </div>
+
+  <div>
+    <label for="passwordConfirm">Подтверждение пароля</label> <input type="password" th:field="*{passwordConfirm}"
+                                                                     id="passwordConfirm" placeholder="Подтверждение пароля">
+    <div th:if="${#fields.hasErrors('global')}">
+      <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+    </div>
+
+  </div>
+  <input type="submit" value="Зарегистрироваться">
+</form>
+</body>
+</html>

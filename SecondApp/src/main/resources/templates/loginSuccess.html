@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Добро пожаловать в систему</title>
+</head>
+<body>
+<div sec:authorize="hasRole('USER')">Вы вошли как пользователь</div>
+<div sec:authorize="hasRole('ADMIN')">Вы вошли как администратор</div>
+<br>
+<div sec:authorize="hasRole('ADMIN')">
+    <a th:href="@{/admin}">Перейти в меню управления профилями пользователей</a>
+    </br>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <a th:href="@{/index}">Перейти на главную страницу</a>
+    </br>
+    <a href="/logout">Выйти</a>
+</div>
+</body>
+</html>

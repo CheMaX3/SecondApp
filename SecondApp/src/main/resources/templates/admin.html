@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Log in with your account</title>
+</head>
+
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>Roles</th>
+        </tr>
+        <tr th:each="user : ${allUsers}">
+            <td th:utext="${user.id}">...</td>
+            <td th:utext="${user.username}">...</td>
+            <td th:utext="${user.password}">...</td>
+            <td th:each="role : ${roles}">
+            <td>
+                <a th:utext="${user.roles}"></a>
+                <select onchange="top.location=this.value">
+                    <option value="">--Выберите необходимое действие--</option>
+                    <option th:value="@{/admin/update(id=${user.id})}">Внести изменения</option>
+                    <option th:value="@{/admin/delete(id=${user.id})}">Удалить пользователя</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <a href="/hello">Главная</a>
+    </br>
+    <a href="/logout">Выйти</a>
+</div>
+</body>
+</html>
